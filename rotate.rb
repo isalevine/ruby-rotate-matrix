@@ -205,6 +205,30 @@ test_array = [
         expected_output: [ [1, 6, 3],
                            [2, 5, 8],
                            [7, 4, 9] ]
+    },
+    {
+        test_id: 13,
+        rotations: 0,
+
+        matrix:          [ [1, 2, 3],           
+                           [4, 5, 6],
+                           [7, 8, 9] ],
+
+        expected_output: [ [1, 2, 3],           
+                           [4, 5, 6],
+                           [7, 8, 9] ],
+    },
+    {
+        test_id: 14,
+        rotations: 4,
+
+        matrix:          [ [1, 2, 3],           
+                           [4, 5, 6],
+                           [7, 8, 9] ],
+
+        expected_output: [ [1, 2, 3],           
+                           [4, 5, 6],
+                           [7, 8, 9] ],
     }
 ]
 
