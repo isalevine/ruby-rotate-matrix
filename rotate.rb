@@ -90,11 +90,11 @@ expected_output = [ [ 1,36,29,22,15, 8, 7],
 
 
 def rotate(matrix, rotations, expected_output)
+    actual_rotations = rotations % 4
     last_index = matrix.length - 1
     max_depth = ((matrix.length - 1) / 2).floor
     depth = 0
     while depth < max_depth
-        # recursively call this with a 'depth' variable to determine right_val index (replace -1)
         matrix[depth].each_with_index do |val, i|   # refactor to just use .each_index?
             first_index = depth + 1
             last_index = matrix[depth].length - (depth + 2)
@@ -105,12 +105,13 @@ def rotate(matrix, rotations, expected_output)
             # puts
 
             if first_index <= i && i <= last_index
+
                 top_val = val                 
                 right_val = matrix[i][(depth + 1) * -1]    
                 bot_val = matrix[(depth + 1) * -1][-i - 1]
                 left_val = matrix[-i - 1][depth]
 
-                # puts <<-valS
+                # puts <<-VAL
                 #     index: #{i}
                 #     depth: #{depth}
                 #     top_val: #{top_val}
@@ -119,12 +120,28 @@ def rotate(matrix, rotations, expected_output)
                 #     left_val: #{left_val}
 
 
-                # valS
+                # VAL
 
-                matrix[depth][i] = left_val                       # top
-                matrix[i][(depth + 1) * -1] = top_val             # right
-                matrix[(depth + 1) * -1][-i - 1] = right_val      # bottom
-                matrix[-i - 1][depth] = bot_val                   # left
+
+                if actual_rotations == 1
+                    matrix[depth][i] = left_val                       # top
+                    matrix[i][(depth + 1) * -1] = top_val             # right
+                    matrix[(depth + 1) * -1][-i - 1] = right_val      # bottom
+                    matrix[-i - 1][depth] = bot_val                   # left
+
+                elsif actual_rotations == 2
+                    matrix[depth][i] = bot_val                        # top
+                    matrix[i][(depth + 1) * -1] = left_val            # right
+                    matrix[(depth + 1) * -1][-i - 1] = top_val        # bottom
+                    matrix[-i - 1][depth] = right_val                 # left
+
+                elsif actual_rotations == 3
+                    matrix[depth][i] = right_val                      # top
+                    matrix[i][(depth + 1) * -1] = bot_val             # right
+                    matrix[(depth + 1) * -1][-i - 1] = left_val       # bottom
+                    matrix[-i - 1][depth] = top_val                   # left
+                end
+
             end
         end
         depth += 1
