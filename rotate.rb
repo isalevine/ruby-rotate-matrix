@@ -1,15 +1,22 @@
+
+# Tests cover these matrix sizes with the following rotations:
+#   1 rotation:   3x3, 4x4, 5x5, 6x6, 7x7
+#   2 rotations:  3x3, 4x4, 5x5
+#   3 rotations:  3x3, 4x4, 5x5
+#   15 rotations: 3x3
+
 test_array = [
     {
         test_id: 1,
         rotations: 1,
 
         matrix:          [ [1, 2, 3],           
-                            [4, 5, 6],
-                            [7, 8, 9] ],
+                           [4, 5, 6],
+                           [7, 8, 9] ],
 
-        expected_output:  [ [1, 4, 3],
-                            [8, 5, 2],
-                            [7, 6, 9] ]
+        expected_output: [ [1, 4, 3],
+                           [8, 5, 2],
+                           [7, 6, 9] ]
     },
 
     {
@@ -258,10 +265,12 @@ def rotate(matrix:, rotations:, expected_output:)
 end
 
 
+
 test_array.each do |test_hash|
     puts <<-HEADER
         TEST #{test_hash[:test_id]}
         ===========================
     HEADER
+
     rotate(matrix: test_hash[:matrix], rotations: test_hash[:rotations], expected_output: test_hash[:expected_output])
 end
