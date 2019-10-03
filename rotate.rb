@@ -50,8 +50,8 @@ def rotate(matrix, rotations, expected_output)
     max_depth = ((matrix.length - 1) / 2).floor
     depth = 0
     while depth < max_depth
-        # recursively call this with a 'depth' variable to determine right_num index (replace -1)
-        matrix[depth].each_with_index do |num, i|   # refactor to just use .each_index?
+        # recursively call this with a 'depth' variable to determine right_val index (replace -1)
+        matrix[depth].each_with_index do |val, i|   # refactor to just use .each_index?
             first_index = depth + 1
             last_index = matrix[depth].length - (depth + 2)
 
@@ -59,28 +59,28 @@ def rotate(matrix, rotations, expected_output)
             # puts i
             # puts last_index
             # puts
-            
-            if first_index <= i && i <= last_index
-                top_num = num                 
-                right_num = matrix[i][(depth + 1) * -1]    
-                bot_num = matrix[(depth + 1) * -1][-i - 1]
-                left_num = matrix[-i - 1][depth]
 
-                # puts <<-NUMS
+            if first_index <= i && i <= last_index
+                top_val = val                 
+                right_val = matrix[i][(depth + 1) * -1]    
+                bot_val = matrix[(depth + 1) * -1][-i - 1]
+                left_val = matrix[-i - 1][depth]
+
+                # puts <<-valS
                 #     index: #{i}
                 #     depth: #{depth}
-                #     top_num: #{top_num}
-                #     right_num: #{right_num}
-                #     bot_num: #{bot_num}
-                #     left_num: #{left_num}
+                #     top_val: #{top_val}
+                #     right_val: #{right_val}
+                #     bot_val: #{bot_val}
+                #     left_val: #{left_val}
 
 
-                # NUMS
+                # valS
 
-                matrix[depth][i] = left_num                       # top
-                matrix[i][(depth + 1) * -1] = top_num             # right
-                matrix[(depth + 1) * -1][-i - 1] = right_num      # bottom
-                matrix[-i - 1][depth] = bot_num                   # left
+                matrix[depth][i] = left_val                       # top
+                matrix[i][(depth + 1) * -1] = top_val             # right
+                matrix[(depth + 1) * -1][-i - 1] = right_val      # bottom
+                matrix[-i - 1][depth] = bot_val                   # left
             end
         end
         depth += 1
