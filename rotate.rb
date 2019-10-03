@@ -280,14 +280,14 @@ def rotate(matrix:, rotations:, expected_output:)
 
     if matrix == expected_output
         output = <<-OUTPUT
-            status:
-            SUCCESSFUL!!
+                status:
+                SUCCESSFUL!!
 
-            matrix:
-            #{matrix}
+                matrix:
+                #{matrix}
 
-            expected_output:
-            #{expected_output}
+                expected_output:
+                #{expected_output}
 
 
         OUTPUT
@@ -295,17 +295,17 @@ def rotate(matrix:, rotations:, expected_output:)
 
     else
         output = <<-OUTPUT
-            status:
-            Failed...
+                status:
+                Failed...
 
-            matrix:
-            #{matrix}
+                matrix:
+                #{matrix}
 
-            expected_output:
-            #{expected_output}
+                expected_output:
+                #{expected_output}
 
-            Aborting program...
-            
+                Aborting program...
+                
         OUTPUT
         abort(output)
     end
@@ -317,7 +317,9 @@ end
 test_array.each do |test_hash|
     puts <<-HEADER
         TEST #{test_hash[:test_id]}
-        ===========================
+            Rotations: #{test_hash[:rotations]}
+            Matrix size: #{test_hash[:matrix].length}x#{test_hash[:matrix].length}
+            ===========================
     HEADER
 
     rotate(matrix: test_hash[:matrix], rotations: test_hash[:rotations], expected_output: test_hash[:expected_output])
