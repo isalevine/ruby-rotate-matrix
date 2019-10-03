@@ -1,8 +1,10 @@
 
 # Tests cover these matrix sizes with the following rotations:
+#   0 rotations:  3x3
 #   1 rotation:   3x3, 4x4, 5x5, 6x6, 7x7
 #   2 rotations:  3x3, 4x4, 5x5
 #   3 rotations:  3x3, 4x4, 5x5
+#   4 rotations:  3x3
 #   15 rotations: 3x3
 
 
