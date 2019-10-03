@@ -31,27 +31,23 @@ def rotate(matrix, rotations, expected_output)
         end
     end
 
+    status = String.new
     if matrix == expected_output
-        puts <<-SUCCESS
-            SUCCESS!!
-
-            matrix:
-            #{matrix}
-
-            expected_output:
-            #{expected_output}
-        SUCCESS
+        status = "Success!!"
     else
-        puts <<-FAIL
-            Failed...
-
-            matrix:
-            #{matrix}
-
-            expected_output:
-            #{expected_output}
-        FAIL
+        status = "Failed..."
     end
+    output = <<-OUTPUT
+        status:
+        #{status}
+
+        matrix:
+        #{matrix}
+
+        expected_output:
+        #{expected_output}
+    OUTPUT
+    puts output
 end
 
 rotate(matrix, rotations, expected_output)
