@@ -1,14 +1,35 @@
+test_array = [
+    {
+        test_id: 1,
+        rotations: 1,
+
+        matrix:          [ [1, 2, 3],           
+                            [4, 5, 6],
+                            [7, 8, 9] ],
+
+        expected_output:  [ [1, 4, 3],
+                            [8, 5, 2],
+                            [7, 6, 9] ]
+    },
+
+    # {},
+    # {},
+    # {},
+    # {},
+    # {},
+    # {},
+    # {},
+    # {},
+    # {},
+    # {},
+    # {}
+]
+
+
+
 # #   TEST 1
 # # ===========
-# rotations = 1
 
-# matrix = [ [1, 2, 3],           
-#            [4, 5, 6],
-#            [7, 8, 9] ]
-
-# expected_output = [ [1, 4, 3],
-#                     [8, 5, 2],
-#                     [7, 6, 9] ]
 
 
 
@@ -166,21 +187,21 @@
 
 
 
-#   TEST 11
-# ===========
-rotations = 3
+# #   TEST 11
+# # ===========
+# rotations = 3
 
-matrix = [ [ 1, 2, 3, 4, 5],           
-           [ 6, 7, 8, 9,10],
-           [11,12,13,14,15], 
-           [16,17,18,19,20], 
-           [21,22,23,24,25] ]
+# matrix = [ [ 1, 2, 3, 4, 5],           
+#            [ 6, 7, 8, 9,10],
+#            [11,12,13,14,15], 
+#            [16,17,18,19,20], 
+#            [21,22,23,24,25] ]
 
-expected_output = [ [ 1,10,15,20, 5],           
-                    [ 4, 7,14, 9,24],
-                    [ 3, 8,13,18,23], 
-                    [ 2,17,12,19,22], 
-                    [21, 6,11,16,25] ]
+# expected_output = [ [ 1,10,15,20, 5],           
+#                     [ 4, 7,14, 9,24],
+#                     [ 3, 8,13,18,23], 
+#                     [ 2,17,12,19,22], 
+#                     [21, 6,11,16,25] ]
 
 
 
@@ -199,39 +220,22 @@ expected_output = [ [ 1,10,15,20, 5],
 
 
 
-def rotate(matrix, rotations, expected_output)
+def rotate(matrix:, rotations:, expected_output:)
     actual_rotations = rotations % 4
     last_index = matrix.length - 1
     max_depth = ((matrix.length - 1) / 2).floor
     depth = 0
+    
     while depth < max_depth
         matrix[depth].each_with_index do |val, i|   # refactor to just use .each_index?
             first_index = depth + 1
             last_index = matrix[depth].length - (depth + 2)
 
-            # puts first_index
-            # puts i
-            # puts last_index
-            # puts
-
             if first_index <= i && i <= last_index
-
                 top_val = val                 
                 right_val = matrix[i][(depth + 1) * -1]    
                 bot_val = matrix[(depth + 1) * -1][-i - 1]
                 left_val = matrix[-i - 1][depth]
-
-                # puts <<-VAL
-                #     index: #{i}
-                #     depth: #{depth}
-                #     top_val: #{top_val}
-                #     right_val: #{right_val}
-                #     bot_val: #{bot_val}
-                #     left_val: #{left_val}
-
-
-                # VAL
-
 
                 if actual_rotations == 1
                     matrix[depth][i] = left_val                       # top
@@ -257,23 +261,59 @@ def rotate(matrix, rotations, expected_output)
         depth += 1
     end
 
-    status = String.new
+    # status = String.new
+    # if matrix == expected_output
+    #     status = "Success!!"
+    # else
+    #     status = "Failed..."
+    # end
+    # output = <<-OUTPUT
+    #     status:
+    #     #{status}
+
+    #     matrix:
+    #     #{matrix}
+
+    #     expected_output:
+    #     #{expected_output}
+    # OUTPUT
+    # puts output
+
     if matrix == expected_output
-        status = "Success!!"
+        output = <<-OUTPUT
+            status:
+            SUCCESSFUL!!
+
+            matrix:
+            #{matrix}
+
+            expected_output:
+            #{expected_output}
+        OUTPUT
+        puts output
+
     else
-        status = "Failed..."
+        output = <<-OUTPUT
+            status:
+            Failed...
+
+            matrix:
+            #{matrix}
+
+            expected_output:
+            #{expected_output}
+
+            Aborting program...
+            
+        OUTPUT
+        abort(output)
     end
-    output = <<-OUTPUT
-        status:
-        #{status}
 
-        matrix:
-        #{matrix}
-
-        expected_output:
-        #{expected_output}
-    OUTPUT
-    puts output
 end
 
-rotate(matrix, rotations, expected_output)
+# rotate(matrix, rotations, expected_output)
+
+test_array.each do |test_hash|
+    puts "Test #{test_hash[:test_id]}"
+    rotate(matrix: test_hash[:matrix], rotations: test_hash[:rotations], expected_output: test_hash[:expected_output])
+end
