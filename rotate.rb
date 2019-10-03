@@ -14,6 +14,8 @@ expected_output = [ [1, 4, 3], [8, 5, 2], [7, 6, 9] ]
 
 def rotate(matrix, rotations, expected_output)
     last_index = matrix.length - 1
+    max_depth = (matrix.length / 2).floor
+    depth = 0
     # recursively call this with a 'depth' variable to determine right_num index (replace -1)
     matrix[0].each_with_index do |num, i|
         if i != 0 && i != last_index
