@@ -38,7 +38,7 @@ expected_output = [ [1, 9, 5, 4], [14, 6, 7, 2], [15, 10, 11, 3], [13, 12, 8, 16
 
 def rotate(matrix, rotations, expected_output)
     last_index = matrix.length - 1
-    max_depth = (matrix.length / 2).floor
+    max_depth = ((matrix.length - 1) / 2).floor
     depth = 0
     while depth < max_depth
         # recursively call this with a 'depth' variable to determine right_num index (replace -1)
@@ -48,6 +48,16 @@ def rotate(matrix, rotations, expected_output)
                 right_num = matrix[i][depth - 1]    
                 bot_num = matrix[-1][-i - 1]
                 left_num = matrix[-i - 1][depth]
+
+                puts <<-NUMS
+                    index: #{i}
+                    top_num: #{top_num}
+                    right_num: #{right_num}
+                    bot_num: #{bot_num}
+                    left_num: #{left_num}
+
+
+                NUMS
 
                 matrix[depth][i] = left_num         # top
                 matrix[i][depth - 1] = top_num      # right
