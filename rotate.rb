@@ -7,6 +7,9 @@
 #   4 rotations:  3x3
 #   15 rotations: 3x3
 
+# NOTE: Code currently assumes correctly-formatted input, 
+# with 2D arrays of equal width and length
+
 
 # Rotations are clockwise, 90 degrees, across a matrix's diagonal axes.
 
